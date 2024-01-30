@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% for comment in comments %}
+        <div>
+                <b>
+                    {{ comment.text }}
+                </b>
+            </a>
+        </div>
+    {% endfor %}
+    <br>
+    <button><a href="{{ path('posts' ) }}"> Back</a></button>
+{% endblock %}
+

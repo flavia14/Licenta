@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    {{ user.userProfile.name }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
+
+{% block body %}
+    <div style="background-image: url('{{ asset('https://img.freepik.com/free-vector/network-mesh-wire-digital-technology-background_1017-27428.jpg?w=1480&t=st=1685646604~exp=1685647204~hmac=119796b2f66329319046089b900474af7f17d8381ecd88c06a3960cdb5766b06') }}'); background-size: cover; height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <div style="background-color: rgba(241, 241, 241, 0.6); padding: 40px; text-align: center;">
+            <div style="font-size: 24px; font-weight: bold; color: #003366;">
+                {{ user.userProfile.name ?? user.email }}
+            </div>
+            <div style="font-size: 18px; color: #003366;">
+                {{ user.email }}
+            </div>
+
+            {% if user.userProfile != null %}
+                <div style="font-size: 18px; color: #003366;">
+                    {{ user.userProfile.bio ?? 'No bio' }}
+                </div>
+            {% endif %}
+
+{#            <div style="margin-top: 16px;">#}
+{#                {{ include('my_profile/followButton.html.twig', { userToFollow: user }) }}#}
+{#            </div>#}
+
+            <button style="background-color: #3b5998; border: none; padding: 10px 20px; margin-top: 16px;">
+                <a href="{{ path('app_top_liked') }}" style="text-decoration: none; color: #fff; font-size: 18px;">
+                    <i class="fab fa-facebook-square" style="margin-right: 8px;"></i> Top Liked Posts
+                </a>
+            </button>
+
+            <button style="background-color: #3b5998; border: none; padding: 10px 20px; margin-top: 16px;">
+                <a href="{{ path('profile') }}" style="text-decoration: none; color: #fff; font-size: 18px;">
+                    <i class="fab fa-facebook-square" style="margin-right: 8px;"></i> Edit profile
+                </a>
+            </button>
+
+            <button style="background-color: #3b5998; border: none; padding: 10px 20px; margin-top: 16px;">
+                <a href="{{ path('menu') }}" style="text-decoration: none; color: #fff; font-size: 18px;">
+                    <i class="fas fa-chevron-circle-left" style="margin-right: 8px;"></i> Back to Menu
+                </a>
+            </button>
+        </div>
+    </div>
+{% endblock %}

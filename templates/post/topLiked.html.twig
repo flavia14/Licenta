@@ -1,0 +1,9 @@
+<div>
+    {% if posts|length > 0 %}
+        {% for post in posts %}
+            {{ include('post/index.html.twig', {post: post}) }}
+        {% endfor %}
+    {% else %}
+        There's nothing here yet!
+    {% endif %}
+</div>

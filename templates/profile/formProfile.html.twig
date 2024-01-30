@@ -1,0 +1,48 @@
+<div style="display: flex; justify-content: center; align-items: center; height: 100vh; background-image: url('{{ asset('https://img.freepik.com/free-vector/network-mesh-wire-digital-technology-background_1017-27428.jpg?w=1480&t=st=1685646604~exp=1685647204~hmac=119796b2f66329319046089b900474af7f17d8381ecd88c06a3960cdb5766b06') }}'); background-size: cover;">
+    <div style="text-align: center; width: 400px; background-color: rgba(255, 255, 255, 0.8); padding: 20px;">
+        <div style="display: flex; justify-content: center; margin-bottom: 10px;">
+            <div>
+                {{ form_label(form.name, 'Your Name', {'label_attr': {'style': 'font-weight: bold;'}}) }}
+                {{ form_widget(form.name, {'attr': {'class': 'form-input'}}) }}
+            </div>
+            <div>
+                {{ form_label(form.bio, 'Bio', {'label_attr': {'style': 'font-weight: bold;'}}) }}
+                {{ form_widget(form.bio, {'attr': {'class': 'form-input'}}) }}
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; margin-bottom: 10px;">
+            <div>
+                {{ form_label(form.twitterUsername, 'Twitter username', {'label_attr': {'style': 'font-weight: bold;'}}) }}
+                {{ form_widget(form.twitterUsername, {'attr': {'class': 'form-input'}}) }}
+            </div>
+            <div>
+                {{ form_label(form.webSiteUrl, 'Website URL', {'label_attr': {'style': 'font-weight: bold;'}}) }}
+                {{ form_widget(form.webSiteUrl, {'attr': {'class': 'form-input'}}) }}
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center; margin-bottom: 10px;">
+            <div>
+                {{ form_label(form.company, 'Company', {'label_attr': {'style': 'font-weight: bold;'}}) }}
+                {{ form_widget(form.company, {'attr': {'class': 'form-input'}}) }}
+            </div>
+            <div>
+                {{ form_label(form.location, 'Location', {'label_attr': {'style': 'font-weight: bold;'}}) }}
+                {{ form_widget(form.location, {'attr': {'class': 'form-input'}}) }}
+            </div>
+        </div>
+        <div style="margin-bottom: 10px;">
+            {{ form_label(form.dateOfBirth, 'Date of birth', {'label_attr': {'style': 'font-weight: bold;'}}) }}
+            {{ form_widget(form.dateOfBirth, {'attr': {'class': 'form-input'}}) }}
+        </div>
+        <button style="background-color: #3b5998; border: none; padding: 10px 20px; margin-top: 16px;">
+            <a href="{{ path('profile_image') }}" style="text-decoration: none; color: #fff; font-size: 18px;">
+                Add profile image
+            </a>
+        </button>
+        <button style="background-color: #3b5998; border: none; padding: 10px 20px; margin-top: 16px;">
+            <a href="{{ path('menu') }}" style="text-decoration: none; color: #fff; font-size: 18px;">
+                Create profile
+            </a>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,30 @@
+{% if users|length > 0 %}
+    <div>
+        {% for otherUser in users %}
+            <div>
+                <div>
+                    <a href="{{ path('app_profile', { id: otherUser.id }) }}">
+                        <div>
+                            {{ other.userProfile.name ?? otherUser.email }}
+                        </div>
+                        <div>
+                            {{ otherUser.email }}
+                        </div>
+                    </a>
+                </div>
+                <div>
+                    {{ include('follower/followButton.html.twig', { userToFollow: otherUser }) }}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div>
+        <div>
+            Nothing to show
+        </div>
+        <div>
+            The list is currently empty
+        </div>
+    </div>
+{% endif %}

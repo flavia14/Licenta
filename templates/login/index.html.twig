@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LoginController!{% endblock %}
+
+{% block body %}
+    <div style="background-image: url('{{ asset('https://img.freepik.com/free-vector/network-mesh-wire-digital-technology-background_1017-27428.jpg?w=1480&t=st=1685646604~exp=1685647204~hmac=119796b2f66329319046089b900474af7f17d8381ecd88c06a3960cdb5766b06') }}'); background-size: cover; height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <div style="background-color: rgba(241, 241, 241, 0.6); padding: 40px; text-align: center;">
+            <h1 style="font-size: 60px; font-weight: bold; font-family: 'Pacifico', cursive; color: #003366;">Login</h1>
+            <form action="{{ path('app_login') }}" method="POST" style="max-width: 400px; margin: 0 auto;">
+                <div style="margin-bottom: 20px;">
+                    <label for="username" style="color: #003366; font-size: 24px;">Username</label>
+                    <input type="text" id="username" name="_username" value="{{ lastUsername }}" placeholder="Enter username" style="width: 100%; padding: 15px; font-size: 20px; background-color: #e6f0ff; border: none; border-radius: 10px;" required>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="password" style="color: #003366; font-size: 24px;">Password</label>
+                    <input type="password" id="password" name="_password" placeholder="Enter password" style="width: 100%; padding: 15px; font-size: 20px; background-color: #e6f0ff; border: none; border-radius: 10px;" required>
+                </div>
+
+                <input type="hidden" name="_target_path" value="/menu">
+                <button type="submit" id="loginButton" style="width: 100%; padding: 20px; background-color: #003366; color: white; border: none; cursor: pointer; font-size: 30px; font-weight: bold; font-family: 'Quicksand', sans-serif;" disabled>Login</button>
+
+                <br>
+                <p style="text-align: center; margin-top: 30px; font-size: 24px; font-family: 'Quicksand', sans-serif; color: #003366;">You do not have an account? <a href="{{ path('app-register') }}" style="color: #003366; text-decoration: none;">Register here</a></p>
+            </form>
+        </div>
+    </div>
+
+    <style>
+        @keyframes fade-in {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            border: none;
+            border-radius: 10px;
+            background-color: #e6f0ff;
+            padding: 15px;
+            font-size: 20px;
+            width: 100%;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            background-color: #d4e6ff;
+        }
+    </style>
+
+    <script>
+        const usernameInput = document.getElementById('username');
+        const passwordInput = document.getElementById('password');
+        const loginButton = document.getElementById('loginButton');
+
+        function toggleLoginButton() {
+            if (usernameInput.value.trim() !== '' && passwordInput.value.trim() !== '') {
+                loginButton.disabled = false;
+            } else {
+                loginButton.disabled = true;
+            }
+        }
+
+        usernameInput.addEventListener('input', toggleLoginButton);
+        passwordInput.addEventListener('input', toggleLoginButton);
+    </script>
+{% endblock %}

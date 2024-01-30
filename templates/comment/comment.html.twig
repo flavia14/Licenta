@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{% endblock %}
+
+{% block bread %}
+{% endblock %}
+
+{% block body %}
+    <form action="{{ path('add-comment-save', { id: id }) }}" method="POST">
+        <div>
+            <label>Text</label>
+            <input type="text" name="text"  placeholder="Enter text"/>
+        </div>
+        <div>
+            <input type="hidden" name="_target_path" value="/posts">
+        </div>
+        <br>
+        <button type="submit">Add Text</button>
+    </form>
+{% endblock %}

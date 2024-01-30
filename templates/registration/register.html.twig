@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div style="background-image: url('{{ asset('https://img.freepik.com/free-vector/network-mesh-wire-digital-technology-background_1017-27428.jpg?w=1480&t=st=1685646604~exp=1685647204~hmac=119796b2f66329319046089b900474af7f17d8381ecd88c06a3960cdb5766b06') }}'); background-size: cover; height: 100vh; display: flex; align-items: center; justify-content: center;">
+        <div style="background-color: rgba(241, 241, 241, 0.6); padding: 40px; text-align: center;">
+            <h1 style="font-size: 60px; font-weight: bold; font-family: 'Pacifico', cursive; color: #003366;">Register</h1>
+            {% set error_message = app.session.flashbag.get('error_message') %}
+            {% if error_message is not empty %}
+                {% for error in error_message %}
+                    <div style="color: red; font-size: 20px; margin-bottom: 10px;">{{ error }}</div>
+                {% endfor %}
+            {% endif %}
+            <form action="{{ path('app-register-save') }}" method="POST" style="max-width: 400px; margin: 0 auto;" onsubmit="return validateForm()">
+                <div style="margin-bottom: 20px;">
+                    <label for="_username" style="color: #003366; font-size: 24px;">Username</label>
+                    <input type="text" id="_username" name="_username" placeholder="Enter username" style="width: 100%; padding: 15px; font-size: 20px; background-color: #e6f0ff; border: none; border-radius: 10px;" required>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="_email" style="color: #003366; font-size: 24px;">Email</label>
+                    <input type="email" id="_email" name="_email" placeholder="Email" style="width: 100%; padding: 15px; font-size: 20px; background-color: #e6f0ff; border: none; border-radius: 10px;" required>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="_password" style="color: #003366; font-size: 24px;">Password</label>
+                    <input type="password" id="_password" name="_password" placeholder="Enter password" style="width: 100%; padding: 15px; font-size: 20px; background-color: #e6f0ff; border: none; border-radius: 10px;" required>
+                </div>
+                <div style="margin-bottom: 20px;">
+                    <label for="_confirm_password" style="color: #003366; font-size: 24px;">Confirm Password</label>
+                    <input type="password" id="_confirm_password" name="_confirm_password" placeholder="Confirm password" style="width: 100%; padding: 15px; font-size: 20px; background-color: #e6f0ff; border: none; border-radius: 10px;" required>
+                </div>
+                <input type="hidden" name="_target_path" value="/posts">
+                <button type="submit" style="width: 100%; padding: 20px; background-color: #003366; color: white; border: none; cursor: pointer; font-size: 30px; font-weight: bold; font-family: 'Quicksand', sans-serif;">Register</button>
+
+                <br>
+            </form>
+            <a href="{{ path('app_login') }}" style="color: #003366; text-decoration: none; font-size: 20px; margin-top: 20px; display: inline-block;">Back to Login</a>
+        </div>
+    </div>
+
+    <style>
+        @keyframes fade-in {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slide-in {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        button,
+        a {
+            animation: slide-in 1s ease-in;
+        }
+    </style>
+
+    <script>
+        function validateForm() {
+            const passwordInput = document.getElementById('_password');
+            const confirmPasswordInput = document.getElementById('_confirm_password');
+
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                alert('Passwords do not match. Please try again.');
+                return false;
+            }
+
+            // Return true to allow form submission
+            return true;
+        }
+    </script>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block stylesheets %}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+{% endblock %}
+
+{% block body %}
+  <div style="background-image: url('{{ asset('https://img.freepik.com/free-vector/network-mesh-wire-digital-technology-background_1017-27428.jpg?w=1480&t=st=1685646604~exp=1685647204~hmac=119796b2f66329319046089b900474af7f17d8381ecd88c06a3960cdb5766b06') }}'); background-size: cover; height: 100vh; display: flex; align-items: center; justify-content: center;">
+    <div style="background-color: rgba(241, 241, 241, 0.6); padding: 40px; text-align: center;">
+      <div style="position: absolute; top: 20px; left: 20px;">
+        <a href="{{ path('menu') }}" style="color: #003366; font-size: 24px; text-decoration: none; display: inline-block; padding: 10px;"><i class="fas fa-bars"></i> Menu</a>
+      </div>
+      <h1 style="font-size: 60px; font-weight: bold; font-family: 'Pacifico', cursive; color: #003366; margin-bottom: 40px;">{{ title }}</h1>
+      <a href="{{ path('front-sensors', {'page':  currentPage  - 1}) }}" style="color: #003366; font-size: 24px; text-decoration: none; display: inline-block; padding: 10px;">Back</a>
+      <a href="{{ path('front-sensors', {'page':  currentPage + 1}) }}" style="color: #003366; font-size: 24px; text-decoration: none; display: inline-block; padding: 10px;">Next</a>
+
+      {% if sensors is empty %}
+        <p>No sensors found.</p>
+      {% else %}
+        <table style="border-collapse: collapse; width: 80%; margin: 0 auto; background-color: #cce5ff;">
+          <thead>
+          <tr>
+            <th style="border: 5px solid #003366; padding: 8px; font-weight: bold; color: #fff; background-color: #003366;">
+              <a href="?sort=id&order={{ (sort == 'id' and order == 'asc') ? 'desc' : 'asc' }}" style="color: #fff; text-decoration: none;">Id</a>
+            </th>
+            <th style="border: 5px solid #003366; padding: 8px; font-weight: bold; color: #fff; background-color: #003366;">
+              <a href="?sort=name&order={{ (sort == 'name' and order == 'asc') ? 'desc' : 'asc' }}" style="color: #fff; text-decoration: none;">Name</a>
+            </th>
+            <th style="border: 5px solid #003366; padding: 8px; font-weight: bold; color: #fff; background-color: #003366;">
+              <a href="?sort=value&order={{ (sort == 'value' and order == 'asc') ? 'desc' : 'asc' }}" style="color: #fff; text-decoration: none;">Value</a>
+            </th>
+            <th style="border: 5px solid #003366; padding: 8px; font-weight: bold; color: #fff; background-color: #003366;">
+              <a href="?sort=unit&order={{ (sort == 'unit' and order == 'asc') ? 'desc' : 'asc' }}" style="color: #fff; text-decoration: none;">Unit</a>
+            </th>
+          </tr>
+          </thead>
+          <tbody>
+          {% for sensor in sensors %}
+            <tr>
+              <td style="border: 4px solid #003366; padding: 8px; font-size: 24px; color: #003366;">{{ sensor.id }}</td>
+              <td style="border: 4px solid #003366; padding: 8px; font-size: 24px; color: #003366;">
+                <a href="{{ path(path, {'name': sensor.name}) }}" style="color: #003366; text-decoration: none;">{{ sensor.name }}</a>
+              </td>
+              <td style="border: 4px solid #003366; padding: 8px; font-size: 24px; color: #003366;">{{ sensor.value }}</td>
+              <td style="border: 4px solid #003366; padding: 8px; font-size: 24px; color: #003366;">{{ sensor.unit }}</td>
+            </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+
+        {% if numPages > 1 %}
+          <div style="text-align: center; margin-top: 20px;">
+            {% for page in 1..numPages %}
+              <a href="{{ path('front-sensors', {'page': page}) }}" style="color: #003366; font-size: 18px; text-decoration: none; margin-right: 5px;">{{ page }}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endif %}
+    </div>
+  </div>
+{% endblock %}

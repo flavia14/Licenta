@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello Profile!{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+    {{ include('profile/formProfile.html.twig') }}
+    {{ form_end(form) }}
+{% endblock %}

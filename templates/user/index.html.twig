@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% for user in user %}
+        <div>
+
+            <a href="{{ path('user-update', {id: user.id} ) }}">
+                <b>
+                    {{ user.username }}
+                </b>
+            </a>
+        </div>
+    {% endfor %}
+{% endblock %}
+

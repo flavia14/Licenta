@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Dashboard Simulation</title>
+    <style>
+        .dashboard {
+            width: 200px;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .led {
+            width: 50px;
+            height: 50px;
+            background-color: {% if ledOn %}red{% else %}#ccc{% endif %};
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="dashboard">
+    <h2>Car Dashboard</h2>
+    <div class="led"></div>
+    <button id="toggleButton">Toggle LED</button>
+    <button type="button" onclick="updateLEDState('{{ path('update_led_state', {'timestamp': 'now'|date('U')}) }}')">Update LED State</button>
+</div>
+
+<script>
+    document.getElementById('toggleButton').addEventListener('click', function() {
+        var led = document.querySelector('.led');
+        var ledOn = led.style.backgroundColor === 'red';
+
+        if (ledOn) {
+            led.style.backgroundColor = '#ccc';
+            sendDataToServer(false);
+        } else {
+            led.style.backgroundColor = 'red';
+            sendDataToServer(true);
+        }
+    });
+
+    function sendDataToServer(ledOn) {
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', '{{ path('update_led_state', {'timestamp': 'now'|date('U')}) }}', true);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                console.log('Data sent successfully');
+            }
+        };
+        xhr.send('ledOn=' + ledOn);
+    }
+</script>
+
+<button type="button" onclick="updateLEDState('{{ path('update_led_state', {'timestamp': 'now'|date('U')}) }}')">Update LED State</button>
+
+<script>
+    function updateLEDState(url) {
+        // Trimiteți o cerere asincronă către URL-ul specificat
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', url, true);
+        xhr.send();
+
+        // Manipulați răspunsul dacă este necesar
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4 && xhr.status === 200) {
+                console.log('Starea LED-ului a fost actualizată cu succes!');
+
+        };
+    }
+</script>
+
+</body>
+</html>

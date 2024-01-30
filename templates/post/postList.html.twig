@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+        <div>
+                <button style="background-color: #AAAAAA;"><a href="{{ path('post-add') }}" style="text-decoration: none; color: black;">Add new Post</a></button>
+                <button><a href="{{ path('app_logout') }}" style="text-decoration: none; color: black;">Logout</a></button>
+                {% if posts|length > 0 %}
+                        {% for post in posts %}
+                                {{ include('post/index.html.twig', {post: post}) }}
+                        {% endfor %}
+                {% else %}
+                        There's nothing here yet!
+                {% endif %}
+        </div>
+{% endblock %}

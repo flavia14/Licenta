@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <center>
+        {% for post in posts %}
+            <hr style="border-top: 5px solid black;">
+            <button style="background-color: chartreuse;"><a href="{{ path('app_my_profile', {id: post.author.id}) }}" style="text-decoration: none; color: black;"> Profile for {{ post.author.username }}</a></button>
+
+            <br>
+            <div>
+                <p style="font-weight: bold; color: #5eb5e0;">
+                    TITLE: {{ post.title }}
+                </p>
+                <p>
+                    TEXT: {{ post.text }}
+                </p>
+                {% if post.likedBy.contains(app.user) %}
+                    <a href="{{ path('app_unlike', {id: post.id}) }}">
+                        <button style="background-color: lightblue;">unlike <span>{{ post.likedBy.count }}</span></button>
+                    </a>
+                {% else %}
+                    <a href="{{ path('app_like', {id: post.id}) }}">
+                        <button style="background-color: lightblue;">like <span>{{ post.likedBy.count }}</span></button>
+                    </a>
+                {% endif %}
+                <br>
+                <button style="background-color: #AAAAAA;"><a href="{{ path('add-comment', {id: post.id}) }}" style="text-decoration: none; color: black;"> Add comment</a></button>
+                <button style="background-color: bisque;"><a href="{{ path('comments', {id: post.id}) }}" style="text-decoration: none; color: black;"> View comments</a></button>
+                <br>
+                <br>
+            </div>
+        {% endfor %}
+
+        <button style="background-color: bisque;"><a href="{{ path('post-add') }}" style="text-decoration: none; color: black;"> Add new post</a></button>
+        <hr style="border-top: 5px solid black;">
+    </center>
+{% endblock %}

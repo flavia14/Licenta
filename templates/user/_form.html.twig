@@ -1,0 +1,15 @@
+{{ form_start(form) }}
+<div>{{ form_errors(form) }}</div>
+<div>
+    {{  form_label(form.username)}}
+</div>
+<div>
+    {{ form_widget(form.username, {'attr': {'style': 'color: blue'}}) }}
+</div>
+<div>
+    {{  form_label(form.password)}}
+</div>
+<div>
+    {{ form_widget(form.password) }}
+</div>
+{{ form_end(form) }}

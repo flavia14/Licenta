@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Car Dashboard Simulation</title>
+    <style>
+        .dashboard {
+            width: 200px;
+            padding: 20px;
+            background-color: #f2f2f2;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .led {
+            width: 50px;
+            height: 50px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .led.on {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div class="dashboard">
+    <h2>Car Dashboard</h2>
+    <div class="led"></div>
+    <button onclick="toggleLED()">Toggle LED</button>
+</div>
+
+<script>
+    function toggleLED() {
+        var led = document.querySelector('.led');
+        led.classList.toggle('on');
+    }
+</script>
+</body>
+</html>

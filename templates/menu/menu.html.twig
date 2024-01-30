@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LoginController!{% endblock %}
+
+{% block body %}
+    <div style="background-image: url('{{ asset('https://img.freepik.com/free-vector/network-mesh-wire-digital-technology-background_1017-27428.jpg?w=1480&t=st=1685646604~exp=1685647204~hmac=119796b2f66329319046089b900474af7f17d8381ecd88c06a3960cdb5766b06') }}'); background-size: cover; height: 100vh; display: flex; flex-direction: column; align-items: center;">
+        <nav style="background-color: #3b5998; width: 100%; padding: 10px; box-sizing: border-box;">
+            <ul style="list-style-type: none; margin: 0; padding: 0; display: flex; justify-content: flex-end;">
+                <li style="margin-right: 10px;">
+                    <a href="{{ path('app_my_profile', {'id': user.id}) }}" class="button-link">My Profile</a>
+                </li>
+                <li style="margin-right: 10px;">
+                    <a href="{{ path('app_logout') }}" class="button-link-logout">Log Out</a>
+                </li>
+            </ul>
+        </nav>
+        <div style="background-color: rgba(241, 241, 241, 0.6); padding: 20px; text-align: center;">
+            <h1 style="font-size: 48px; font-weight: bold; font-family: 'Pacifico', cursive; color: #0e4677;">Welcome, User!</h1>
+            <p style="animation: fade-in 1s ease-in; font-size: 24px; font-family: 'Quicksand', sans-serif; color: #0e4677;">
+                Thank you for visiting our website. Enjoy exploring the features!
+            </p>
+            <nav style="margin-top: 20px;">
+                <ul style="list-style-type: none; margin: 0; padding: 0; display: flex; justify-content: center;">
+                    <li style="margin-right: 10px;">
+                        <a href="{{ path('front-sensors') }}" class="button-link">Front Sensors</a>
+                    </li>
+                    <li style="margin-right: 10px;">
+                        <a href="{{ path('back-sensors') }}" class="button-link">Back Sensors</a>
+                    </li>
+                    <li style="margin-right: 10px;">
+                        <a href="{{ path('dashboard') }}" class="button-link">Simulation</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+
+    <style>
+        @keyframes fade-in {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .button-link {
+            text-decoration: none;
+            color: #fff;
+            padding: 15px 40px;
+            background-color: #0066cc;
+            border-radius: 10px;
+            font-size: 36px;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .button-link:hover {
+            transform: scale(1.1);
+        }
+
+        .button-link-logout {
+            text-decoration: none;
+            color: #fff;
+            padding: 15px 40px;
+            background-color: #0047ab;
+            border-radius: 10px;
+            font-size: 36px;
+            font-weight: bold;
+            font-family: 'Montserrat', sans-serif;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .button-link-logout:hover {
+            transform: scale(1.1);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+{% endblock %}

@@ -1,0 +1,10 @@
+
+    {% if app.user.follows is defined and not app.user.follows.contains(userToFollow) %}
+        <a href="{{ path('app_follow', { id: userToFollow.id }) }}">
+            Follow
+        </a>
+    {% else %}
+        <a href="{{ path('app_unfollow', { id: userToFollow.id }) }}">
+            Unfollow
+        </a>
+    {% endif %}
